@@ -4536,30 +4536,6 @@ ninja install
 install -t /usr/share/licenses/gtkmm3 -Dm644 ../COPYING ../COPYING.tools
 cd ../..
 rm -rf gtkmm-3.24.5
-# Arc (GTK Theme).
-tar --no-same-owner -xf arc-theme-20220102.tar.xz -C /usr/share --strip-components=1
-gtk-update-icon-cache /usr/share/icons/Arc
-mkdir -p /etc/gtk-2.0
-cat > /etc/gtk-2.0/gtkrc << END
-gtk-theme-name = "Arc-Dark"
-gtk-icon-theme-name = "Arc"
-gtk-cursor-theme-name = "Adwaita"
-gtk-font-name = "Noto Sans 10"
-END
-mkdir -p /etc/gtk-3.0
-cat > /etc/gtk-3.0/settings.ini << END
-[Settings]
-gtk-theme-name = Arc-Dark
-gtk-icon-theme-name = Arc
-gtk-font-name = Noto Sans 10
-gtk-cursor-theme-size = 0
-gtk-toolbar-style = GTK_TOOLBAR_ICONS
-gtk-xft-antialias = 1
-gtk-xft-hinting = 1
-gtk-xft-hintstyle = hintnone
-gtk-xft-rgba = rgb
-gtk-cursor-theme-name = Adwaita
-END
 # libhandy.
 tar -xf libhandy-1.6.1.tar.xz
 cd libhandy-1.6.1
