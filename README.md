@@ -1,4 +1,4 @@
-# This repository is now archived due to no actvity.
+# This repository has been archived due to no actvity.
 If you would like to continue the project, join The Sonic Master's [Discord Server](https://discord.gg/EfshNrt), and let me know in the `#tech-chat` channel.
 
 You can also DM me on Discord. My Discord username is `AaronTechnic#5995`.
