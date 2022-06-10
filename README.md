@@ -1,4 +1,8 @@
-# Welcome To MassOS
+# This repository is now archived due to no actvity.
+If you would like to continue the project, join The Sonic Master's [Discord Server](https://discord.gg/EfshNrt), and let me know in the `#tech-chat` channel.
+
+You can also DM me on Discord. My Discord username is `AaronTechnic#5995`.
+## Welcome to MassOS
 Welcome to **MassOS**, a [free](https://www.gnu.org/philosophy/free-sw.html) GNU/Linux operating system for x86_64 devices, which aims to be minimal and lightweight, without compromising features. This edition uses the [GNOME](https://gnome.org) desktop environment.
 ![](massos-desktop-screenshot.png)
 The MassOS system itself is under 5 gigabytes. Quite impressive for a GNU/Linux distribution containing a full desktop environment and common programs, as well as development tools/headers. Some distributions are able to achieve minimalism by using smaller replacements for common GNU software, at the cost of some features. With MassOS, you get the minimal size, without compromising the advanced features exclusive to GNU software.
