@@ -1,7 +1,9 @@
 # This repository has been archived due to no actvity.
-If you would like to continue the project, join The Sonic Master's [Discord Server](https://discord.gg/EfshNrt), and let me know in the `#tech-chat` channel.
 
-You can also DM me on Discord. My Discord username is `AaronTechnic#5995`.
+The development of MassOS GNOME has been taken over by RetronEletron/Xinc.
+
+Please go to [RetronEletron/MassOS-GNOME](https://github.com/RetronEletron/MassOS-GNOME) instead.
+
 ## Welcome to MassOS
 Welcome to **MassOS**, a [free](https://www.gnu.org/philosophy/free-sw.html) GNU/Linux operating system for x86_64 devices, which aims to be minimal and lightweight, without compromising features. This edition uses the [GNOME](https://gnome.org) desktop environment.
 ![](massos-desktop-screenshot.png)
