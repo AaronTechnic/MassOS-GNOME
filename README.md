@@ -2,7 +2,7 @@
 
 The development of MassOS GNOME has been taken over by RetronEletron/Xinc.
 
-Please go to [RetronEletron/MassOS-GNOME](https://github.com/MassOS-Linux/MassOS-GNOME) instead.
+Please go to [MassOS-Linux/MassOS-GNOME](https://github.com/MassOS-Linux/MassOS-GNOME) instead.
 
 ## Welcome to MassOS
 Welcome to **MassOS**, a [free](https://www.gnu.org/philosophy/free-sw.html) GNU/Linux operating system for x86_64 devices, which aims to be minimal and lightweight, without compromising features. This edition uses the [GNOME](https://gnome.org) desktop environment.
