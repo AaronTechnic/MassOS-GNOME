@@ -1,4 +1,4 @@
-# This repository has been archived due to no actvity.
+# This repository has been archived due to no activity.
 
 The development of MassOS GNOME has been taken over by RetronEletron/Xinc.
 
