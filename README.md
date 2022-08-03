@@ -1,6 +1,6 @@
 # This repository has been archived due to no activity.
 
-The development of MassOS GNOME has been taken over by RetronEletron/Xinc.
+The development of MassOS GNOME has been taken over by the official MassOS Team.
 
 Please go to [MassOS-Linux/MassOS-GNOME](https://github.com/MassOS-Linux/MassOS-GNOME) instead.
 
