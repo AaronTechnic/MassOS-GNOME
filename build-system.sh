@@ -3652,6 +3652,10 @@ END
 install -t /usr/share/licenses/grub -Dm644 COPYING
 popd
 rm -rf grub-2.12
+# grub-theme-distro-massos.
+install -dm755 /usr/share/grub/themes/distro-massos
+tar -xf ../sources/grub-theme-distro-massos-001.tar.gz -C /usr/share/grub/themes/distro-massos --strip-components=1
+install -t /usr/share/licenses/grub-theme-distro-massos -Dm644 /usr/share/grub/themes/distro-massos/LICENSE
 # os-prober.
 tar -xf ../sources/os-prober_1.83.tar.xz
 pushd work
@@ -3659,12 +3663,7 @@ gcc $CFLAGS newns.c -o newns $LDFLAGS
 install -t /usr/bin -Dm755 os-prober linux-boot-prober
 install -t /usr/lib/os-prober -Dm755 newns
 install -t /usr/share/os-prober -Dm755 common.sh
-for dir in os-probes os-probes/mounted os-probes/init linux-boot-probes linux-boot-probes/mounted; do
-  install -t /usr/lib/$dir -Dm755 $dir/common/*
-  if [ -d $dir/x86 ]; then
-    cp -r $dir/x86/* /usr/lib/$dir
-  fi
-done
+for dir in os-probes{,/{mounted,init}} linux-boot-probes{,/mounted}; do install -t /usr/lib/$dir -Dm755 $dir/common/*; test ! -d $dir/x86 || cp -r $dir/x86/* /usr/lib/$dir; done
 install -t /usr/lib/os-probes/mounted -Dm755 os-probes/mounted/powerpc/20macosx
 install -dm755 /var/lib/os-prober
 install -t /usr/share/licenses/os-prober -Dm644 debian/copyright
@@ -7269,7 +7268,7 @@ install -t /usr/share/licenses/gstreamer-vaapi -Dm644 subprojects/gstreamer-vaap
 install -t /usr/share/licenses/gst-editing-services -Dm644 subprojects/gst-editing-services/COPYING{,.LIB}
 install -t /usr/share/licenses/gst-python -Dm644 subprojects/gst-python/COPYING
 popd
-rm -rf gstreamer-1.25.1.tar.bz2
+rm -rf gstreamer-1.25.1
 # nvidia-vaapi-driver.
 tar -xf ../sources/nvidia-vaapi-driver-0.0.13.tar.gz
 pushd nvidia-vaapi-driver-0.0.13
@@ -7364,7 +7363,7 @@ ninja -C build
 ninja -C build install
 install -t /usr/share/licenses/xdg-desktop-portal -Dm644 COPYING
 popd
-rm -rf xdg-desktop-portal-1.18,4
+rm -rf xdg-desktop-portal-1.18.4
 # xdg-desktop-portal-gtk.
 tar -xf ../sources/xdg-desktop-portal-gtk-1.15.2.tar.xz
 pushd xdg-desktop-portal-gtk-1.15.2

@@ -184,6 +184,7 @@ graphviz
 grep
 groff
 grub
+grub-theme-distro-massos
 gsettings-desktop-schemas
 gspell
 gst-editing-services

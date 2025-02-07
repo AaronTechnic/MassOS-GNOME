@@ -451,6 +451,15 @@ make install
 install -t /usr/share/licenses/gparted -Dm644 COPYING
 popd
 rm -rf gparted-GPARTED_1_7_0
+# gnome-disk-utility.
+tar -xf ../sources/gnome-disk-utility-46.1.tar.bz2
+pushd gnome-disk-utility-46.1
+meson setup build --prefix=/usr --sbindir=bin --buildtype=minsize
+ninja -C build
+ninja -C build install
+install -t /usr/share/licenses/gnome-disk-utility -Dm644 COPYING
+popd
+rm -rf gnome-disk-utility-46.1
 # Popsicle.
 tar -xf ../sources/popsicle-1.3.3.tar.gz
 pushd popsicle-1.3.3

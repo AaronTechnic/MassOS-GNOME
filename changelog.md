@@ -20,6 +20,7 @@ Changes:
 - Dropped old Xorg input drivers which are replaced by libinput.
 - Renamed NVIDIA-Open-Kernel-Modules package to nvidia-modules-open, and marked as provides nvidia-modules.
 - Split Noto fonts package into normal fonts, CJK fonts and emoji fonts.
+- Added new default GRUB theme for MassOS based on distro-grub-themes.
 - Added GTK4 and libadwaita to the core MassOS system, to support future programs which depend on them.
 - Added zsh and fish, both of which can optionally be used for the shell instead of the default Bash.
 - Added libaom and SVT-AV1 packages for improved AV1 video codec support.
@@ -188,6 +189,7 @@ Upgraded software (core):
 - Grep: `3.8 --> 3.11`
 - Groff: `1.22.4 --> 1.23.0`
 - GRUB: `2.06 --> 2.12`
+- grub-theme-distro-massos: `(new package) --> 001`
 - gsettings-desktop-schemas: `43.0 --> 47.1`
 - gspell: `1.12.0 --> 1.14.0`
 - gst-editing-services: `(new package) --> 1.25.1`
@@ -702,6 +704,7 @@ Upgraded software (Xfce):
 - Firefox: `105.0.1 --> 135.0`
 - FreeRDP: `2.8.0 --> (removed)`
 - Garcon: `4.17.1 --> 4.20.0`
+- gnome-disk-utility: `(new package) --> 46.1`
 - GNOME-Firmware: `41.0 --> 47.0`
 - GNOME-Software: `41.5 --> 47.4`
 - GParted: `1.4.0 --> 1.7.0`
