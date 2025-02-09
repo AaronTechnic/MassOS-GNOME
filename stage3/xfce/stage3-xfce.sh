@@ -328,7 +328,7 @@ not_root() {
 }
 
 usage() {
-  echo "$(basename "$0"): Control whether Blueman will autostart on login."
+  echo "$(basename "$0"): Control whether Blueman will autostart on login." >&2
   echo "Usage: $(basename "$0") [enable|disable]" >&2
   exit 1
 }
@@ -430,17 +430,15 @@ make install
 install -t /usr/share/licenses/mousepad -Dm644 COPYING
 popd
 rm -rf mousepad-0.6.3
-# galculator.
-tar -xf ../sources/galculator-2.1.4.tar.gz
-pushd galculator-2.1.4
-sed -i 's/s_preferences/extern s_preferences/' src/main.c
-autoreconf -fi
-./configure --prefix=/usr
-make
-make install
-install -t /usr/share/licenses/galculator -Dm644 COPYING
+# GNOME-Calculator.
+tar -xf ../sources/gnome-calculator-47.1.tar.bz2
+pushd gnome-calculator-47.1
+meson setup build --prefix=/usr --sbindir=bin --buildtype=minsize
+ninja -C build
+ninja -C build install
+install -t /usr/share/licenses/gnome-calculator -Dm644 COPYING
 popd
-rm -rf galculator-2.1.4
+rm -rf gnome-calculator-47.1
 # GParted.
 tar -xf ../sources/gparted-GPARTED_1_7_0.tar.bz2
 pushd gparted-GPARTED_1_7_0

@@ -11,7 +11,7 @@ fi
 # Change into the sources directory.
 cd sources
 # Run b2sum on all downloaded files.
-cat ../source-urls.b2 | b2sum -c
+b2sum -c ../source-urls.b2
 STATUS=$?
 # Ensure everything verified successfully.
 if [ $STATUS -ne 0 ]; then

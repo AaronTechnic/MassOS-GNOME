@@ -26,10 +26,11 @@ fi
 export PATH="$PATH:$PWD/utils/programs"
 # Ensure dependencies are present.
 which curl &>/dev/null || (echo "Error: curl is required." >&2; exit 1)
-which make &>/dev/null || (echo "Error: make is required." >&2; exit 1)
 which mass-chroot &>/dev/null || (echo "Error: mass-chroot (from MassOS) is required." >&2; exit 1)
 which mkfs.fat &>/dev/null || (echo "Error: mkfs.fat from dosfstools is required." >&2; exit 1)
 which mksquashfs &>/dev/null || (echo "Error: mksquashfs from squashfs-tools is required." >&2; exit 1)
+which parallel &>/dev/null || (echo "Error: parallel is required." >&2; exit 1)
+which rdfind &>/dev/null || (echo "Error: rdfind is required." >&2; exit 1)
 which unzip &>/dev/null || (echo "Error: unzip is required." >&2; exit 1)
 which xorriso &>/dev/null || (echo "Error: xorriso from libisoburn is required." >&2; exit 1)
 # Ensure that the rootfs file is specified and exists.
@@ -196,3 +197,6 @@ echo "Cleaning up..."
 rm -rf iso-workdir
 # Finishing message.
 echo "All done! Output image written to massos-$ver-livecd-x86_64-$variant.iso."
+# Generate Blake-2 checksum.
+b2sum "massos-$ver-livecd-x86_64-$variant.iso" > "massos-$ver-livecd-x86_64-$variant.iso.b2"
+echo "Blake-2 checksum written to massos-$ver-livecd-x86_64-$variant.iso.b2."

@@ -98,8 +98,8 @@ cp utils/{pre,post}upgrade "$MASSOS"/tmp
 install -t "$MASSOS"/tmp -m755 utils/livecd-cleanup.sh
 # Strip executables and libraries to free up space.
 printf "Stripping binaries and libraries... "
-find "$MASSOS"/usr/{bin,lib,libexec,sbin} -type f ! -name \*.a ! -name \*.o ! -name \*.mod ! -name \*.module -exec strip --strip-unneeded {} + &>/dev/null || true
-find "$MASSOS"/usr/lib -type f -name \*.a -or -name \*.o -or -name \*.mod -or -name \*.module -exec strip --strip-debug {} + &>/dev/null || true
+find "$MASSOS"/usr/{bin,lib,libexec,sbin} -type f ! -name \*.a ! -name \*.o ! -name \*.mod ! -name \*.module -exec strip --strip-unneeded {} ';' &>/dev/null || true
+find "$MASSOS"/usr/lib -type f -name \*.a -or -name \*.o -or -name \*.mod -or -name \*.module -exec strip --strip-debug {} ';' &>/dev/null || true
 echo "Done!"
 # Finish the MassOS system.
 outfile="massos-$(cat "$MASSOS"/etc/massos-release)-rootfs-x86_64-$1.tar"
@@ -111,8 +111,8 @@ echo "Done!"
 echo "Compressing $outfile with XZ (using $(nproc) threads)..."
 xz -v --threads=$(nproc) "$outfile"
 echo "Successfully created $outfile.xz."
-printf "SHA256 checksum for this build: "
-sha256sum $outfile.xz | sed "s/  $outfile.xz//"
+b2sum "$outfile.xz" > "$outfile.xz.b2"
+echo "Wrote Blake-2 checksum to $outfile.xz.b2."
 # Clean up.
 rm -rf "$MASSOS"
 # Finishing message.

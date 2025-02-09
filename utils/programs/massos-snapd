@@ -1,0 +1,238 @@
+#!/usr/bin/env bash
+
+# massos-snapd - Utility to manage the Snapd installation on a MassOS system.
+
+# Exit on error.
+set -e
+
+# Set the software version.
+ver="0.0.1"
+
+# Version of Go. Shouldn't really need to be updated frequently.
+ver_go="1.23.4"
+
+# What is our name?
+inv="$(basename "$0")"
+
+# What is the MassOS release?
+
+# Message functions.
+die() {
+  # Red text and exit unsuccessfully.
+  echo -e "\e[1;31mERROR: $*\e[0m" >&2
+  exit 1
+}
+msg() {
+  # Yellow text.
+  echo -e "\e[1;33m$*\e[0m"
+}
+suc() {
+  # Green text.
+  echo -e "\e[1;32m$*\e[0m"
+}
+
+# Prompt.
+prompt() {
+  # Yellow text.
+  printf "\e[1m$* [y/N]\e[0m "
+  read -r ans
+  # Return depending on what was specified.
+  case "$ans" in
+    y|Y|yes|Yes|yEs|yeS|YEs|YeS|yES|YES) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
+# Ensure we are running as root.
+if test $EUID -ne 0; then
+  die "This utility must be run as root (use 'sudo')."
+fi
+
+# Obtain the version of MassOS we are running on.
+ver_massos="$(cat /etc/massos-release 2>/dev/null || echo "UNKNOWN")"
+
+# Determine the version of snapd as defined by the MassOS build.
+ver_snapd="$(grep -sm1 "^version:" /usr/share/massos/snapdversion | cut -d' ' -f2)"
+
+# We can only run if a version was successfully determined.
+if test -z "$ver_snapd"; then
+  die "This utility is only supported on a newer version of MassOS."
+fi
+
+# We no longer support split bin-sbin in MassOS.
+if ! readlink /usr/sbin &>/dev/null; then
+  die "This utility is only supported on a newer version of MassOS."
+fi
+
+# Display usage function.
+usage() {
+  echo "$inv (MassOS Snapd Installation Manager) $ver"
+  echo "Dealing with Snapd $ver_snapd for MassOS $ver_massos."
+  echo
+  echo "Usage: $inv <operation>"
+  echo
+  echo "Supported operations:"
+  echo
+  echo "  $inv install   - Install Snapd on your system."
+  echo "  $inv uninstall - Uninstall Snapd from your system."
+  echo "  $inv status    - Check if Snapd is installed on your system."
+  echo
+  echo "For more extensive documentation, see 'man $inv'."
+  echo
+  echo "Copyright (C) 2025 Daniel Massey."
+  echo "This utility is free software, licensed under the GNU GPLv3+ license."
+  echo "See the file </usr/share/massos/LICENSE> for more information."
+  echo "The license and copright on Snapd is unaffected by this utility."
+  echo "This utility's authors make no additional copyright claims over Snapd."
+}
+
+# Install function.
+operation_install() {
+  msg "Snapd $ver_snapd will be installed on your system."
+  # Confirmation prompt.
+  if ! prompt "Do you want to proceed with this operation?"; then
+    die "Operation will not proceed at user's discretion."
+  fi
+  # Set up a working directory.
+  workdir="$(mktemp -d "/tmp/$inv-XXXXXX")"
+  pushd "$workdir" >/dev/null
+  # Download stuff.
+  msg "Downloading source files..."
+  curl -fL "https://dl.google.com/go/go$ver_go.linux-amd64.tar.gz" -o dl_go
+  curl -fL "https://github.com/canonical/snapd/releases/download/$ver_snapd/snapd_$ver_snapd.vendor.tar.xz" -o dl_snapd
+  # Extract stuff.
+  msg "Extracting source files..."
+  install -d go snapd
+  tar -xf dl_go -C go --strip-components=1
+  tar -xf dl_snapd -C snapd --strip-components=1
+  # Build the thing.
+  msg "Building Snapd $ver_snapd..."
+  # Set up the environment variables for the build.
+  unset CFLAGS CXXFLAGS CPPFLAGS LDFLAGS
+  unset CGO_CFLAGS CGO_CXXFLAGS CGO_CPPFLAGS CGO_LDFLAGS
+  export PATH="$PWD/go/bin:$PATH"
+  export GOPATH="$PWD/go"
+  export GO111MODULE=off
+  export CGO_ENABLED=1
+  export MAKEFLAGS="-j$(nproc)"
+  # Make Go use our source instead of re-downloading.
+  install -dm755 go/src/github.com/snapcore
+  ln -sfr snapd go/src/github.com/snapcore/snapd
+  # Parepare Snapd sources.
+  pushd snapd >/dev/null
+  ./mkversion.sh "$ver_snapd" 2>/dev/null
+  # Build dyanmic Go components of Snapd.
+  go build -trimpath -buildmode=pie -ldflags="-linkmode=external" -o "$GOPATH"/bin/snap -tags nomanagers "github.com/snapcore/snapd/cmd/snap"
+  go build -trimpath -buildmode=pie -ldflags="-linkmode=external" -o "$GOPATH"/bin/snapd "github.com/snapcore/snapd/cmd/snapd"
+  go build -trimpath -buildmode=pie -ldflags="-linkmode=external" -o "$GOPATH"/bin/snapd-apparmor "github.com/snapcore/snapd/cmd/snapd-apparmor"
+  go build -trimpath -buildmode=pie -ldflags="-linkmode=external" -o "$GOPATH"/bin/snap-seccomp "github.com/snapcore/snapd/cmd/snap-seccomp"
+  go build -trimpath -buildmode=pie -ldflags="-linkmode=external" -o "$GOPATH"/bin/snap-failure "github.com/snapcore/snapd/cmd/snap-failure"
+  # Build static Go components of Snapd.
+  go build -trimpath -buildmode=exe -ldflags="-linkmode=external -extldflags='-static'" -o "$GOPATH"/bin/snap-update-ns "github.com/snapcore/snapd/cmd/snap-update-ns"
+  go build -trimpath -buildmode=exe -ldflags="-linkmode=external -extldflags='-static'" -o "$GOPATH"/bin/snap-exec "github.com/snapcore/snapd/cmd/snap-exec"
+  go build -trimpath -buildmode=exe -ldflags="-linkmode=external -extldflags='-static'" -o "$GOPATH"/bin/snapctl "github.com/snapcore/snapd/cmd/snapctl"
+  # Build data files of Snapd.
+  make -C data BINDIR=/usr/bin LIBEXECDIR=/usr/lib SNAPD_ENVIRONMENT_FILE=/etc/default/snapd SYSTEMDSYSTEMUNITDIR=/usr/lib/systemd/system
+  # Build C/C++ components of Snapd.
+  pushd cmd >/dev/null
+  autoreconf -fi
+  ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --libexecdir=/usr/lib/snapd --enable-apparmor --enable-merged-usr --enable-nvidia-biarch
+  make
+  popd >/dev/null
+  # Install Snapd and its data.
+  msg "Installing Snapd $ver_snapd..."
+  install -t /usr/bin -Dm755 "$GOPATH"/bin/snap
+  install -t /usr/lib/snapd -Dm755 "$GOPATH"/bin/snap{ctl,d{,-apparmor},-exec,-failure,-seccomp,-update-ns}
+  ln -sfr /usr/lib/snapd/snapctl /usr/bin/snapctl
+  install -dm755 /snap
+  install -dm755 /var/cache/snapd
+  install -dm755 /var/lib/snapd/{apparmor,assertions,dbus-1/services,dbus-1/system-services,desktop/applications,device,hostfs,inhibit,lib/gl,lib/gl32,lib/vulkan,lib/glvnd,mount,seccomp/bpf,snaps}
+  install -dm700 /var/lib/snapd/{cache,cookie}
+  make -C cmd install
+  install -t /usr/share/bash-completion/completions -Dm644 data/completion/bash/snap
+  install -t /usr/lib/snapd -Dm644 data/completion/bash/{complete,etelpmoc}.sh
+  make -C data DBUSSERVICESDIR=/usr/share/dbus-1/services SYSTEMDSYSTEMUNITDIR=/usr/lib/systemd/system install
+  install -t /usr/share/polkit-1/actions -Dm644 data/polkit/io.snapcraft.snapd.policy
+  install -dm755 /usr/share/man/man8
+  /usr/bin/snap help --man > /usr/share/man/man8/snap.8
+  install -t /usr/lib/snapd -Dm644 data/info
+  gzip -9 /usr/share/man/man8/snap.8
+  gzip -9 /usr/share/man/man8/snap-confine.8
+  gzip -9 /usr/share/man/man8/snap-discard-ns.8
+  gzip -9 /usr/share/man/man8/snapd-env-generator.8
+  rm -f /usr/lib/systemd/system/snapd.{system-shutdown.service,autoimport.service,recovery-chooser-trigger.service,core-fixup.*,snap-repair.*}
+  rm -f /usr/lib/snapd/{snapd.core-fixup.sh,system-shutdown}
+  rm -f /usr/bin/ubuntu-core-launcher
+  install -t /usr/share/licenses/snapd -Dm644 COPYING
+  # Strip the executables.
+  msg "Stripping executables..."
+  strip --strip-all /usr/bin/snap 2>/dev/null || true
+  strip --strip-all /usr/lib/snapd/* 2>/dev/null || true
+  # Enable Snapd systemd services.
+  msg "Enabling Snapd systemd services..."
+  update-desktop-database
+  systemctl daemon-reload
+  systemctl enable snapd
+  systemctl enable snapd.apparmor
+  # Clean up.
+  msg "Cleaning up..."
+  popd >/dev/null
+  popd >/dev/null
+  rm -rf "$workdir"
+  # Mark Snapd as installed.
+  msg "Recording changes to Snapd installation..."
+  sed -i 's/installed: no/installed: yes/' /usr/share/massos/snapdversion
+  # Display successful finishing message and restart prompt.
+  suc "Snapd $ver_snapd has been successfully installed."
+  if prompt "Your system will now reboot. Is this OK?"; then
+    shutdown -r now
+  else
+    die "You MUST manually reboot the system before attempting to use Snapd."
+  fi
+}
+
+# Uninstall function.
+operation_uninstall() {
+  msg "Snapd $ver_snapd will be uninstalled from your system."
+  # Confirmation prompt.
+  if ! prompt "Do you want to proceed with this operation?"; then
+    die "Operation will not proceed at user's discretion."
+  fi
+  # TODO: Implement this functionality.
+  die "This functionality is not yet implemented, sorry!"
+}
+
+# Status function.
+operation_status() {
+  # Determine if snapd is reported to be installed.
+  snapd_installed_reported="$(grep -sm1 "^installed:" /usr/share/massos/snapdversion | cut -d' ' -f2)"
+  # Determine is snapd is really installed.
+  snapd_installed_really="$(snap --version 2>/dev/null || echo "no")"
+  # Display message based on consistency.
+  if test "$snapd_installed_reported" = "yes" && test "$snapd_installed_really" != "no"; then
+    # Reported as installed and really is installed.
+    msg "Snapd is installed ($snapd_installed_really)."
+  elif test "$snapd_installed_reported" = "yes" && test "$snapd_installed_really" = "no"; then
+    # Reported as installed but is not really installed.
+    msg "Snapd is not installed (although it is reported as installed)."
+  elif test "$snapd_installed_reported" != "yes" && test "$snapd_installed_really" != "no"; then
+    # Reported as not installed but it is somehow installed.
+    msg "Snapd is installed ($snapd_installed_really), but is reported as not."
+  else
+    # Neither reported as installed or really installed.
+    msg "Snapd is not installed."
+  fi
+  # TODO: Add option to correct the problem, i.e., change reported value.
+}
+
+# Determine what to do based on which operation was specified.
+operation="$1"
+shift || true
+case "$operation" in
+  install) operation_install ;;
+  uninstall) operation_uninstall ;;
+  status) operation_status ;;
+  help|-h|-help|--help) usage ;;
+  version|-v|-V|-version|--version) usage | head -n2; usage | tail -n6 ;;
+  *) usage >&2; exit 1 ;;
+esac

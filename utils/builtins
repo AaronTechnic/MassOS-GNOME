@@ -24,6 +24,7 @@ avahi
 bash
 bash-completion
 bc
+bcachefs-tools
 bind-utils
 binutils
 biosdevname
@@ -204,6 +205,7 @@ gtk4
 gtkmm3
 gtksourceview3
 gtksourceview4
+gtksourceview5
 gutenprint
 gvfs
 gzip
@@ -484,6 +486,7 @@ meson
 meson-python
 mkfontscale
 minizip
+mm-common
 mobile-broadband-provider-info
 modemmanager
 moreutils

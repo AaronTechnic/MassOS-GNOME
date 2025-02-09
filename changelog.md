@@ -40,6 +40,7 @@ Changes:
 - [Xfce] Added openbox compatibility to Arc theme, for LabWC theme support.
 - [Xfce] Added elementary icon theme, for some missing icons not provided by Adwaita or Arc.
 - [Xfce] Updated GNOME apps to their newer GTK4/libadwaita versions, with fixes for consistent theming.
+- [Xfce] Replaced Galculator with GNOME-Calculator, a more modern-feeling calculator app.
 
 Upgraded software (core):
 
@@ -64,6 +65,7 @@ Upgraded software (core):
 - Bash: `5.2 --> 5.2.37`
 - bash-completion: `2.11 --> 2.16.0`
 - bc: `6.0.3 --> 7.0.3`
+- bcachefs-tools: `(new package) --> 1.20.0`
 - BIND-Utils: `9.18.6 --> 9.20.5`
 - Binutils: `2.39 --> 2.44`
 - biosdevname: `(new package) --> 0.7.3`
@@ -100,7 +102,7 @@ Upgraded software (core):
 - cups-filters: `1.28.16 --> 2.0.1`
 - cups-pdf: `(new package) --> 3.0.1`
 - cups-pk-helper: `(new package) --> 0.2.7`
-- curl: `7.85.0 --> 8.11.1`
+- curl: `7.85.0 --> 8.12.0`
 - Cython: `0.29.25 --> 3.0.11`
 - D-Bus: `1.14.2 --> 1.16.0`
 - dav1d: `1.0.0 --> 1.5.1`
@@ -159,7 +161,7 @@ Upgraded software (core):
 - gcab: `1.5 --> 1.6`
 - GCC: `12.2.0 --> 14.2.0`
 - Gcr: `3.41.1 --> 3.41.2`
-- Gcr4: `(new package) --> 4.3.0`
+- Gcr4: `(new package) --> 4.3.1`
 - GDBM: `1.23 --> 1.24`
 - GDK-Pixbuf: `2.42.9 --> 2.42.12`
 - GeoClue: `2.6.0 --> 2.7.2`
@@ -207,9 +209,10 @@ Upgraded software (core):
 - gtk-layer-shell: `(new package) --> 0.9.0`
 - GTK3: `3.24.34 --> 3.24.48`
 - GTK4: `(new package) --> 4.16.12`
+- Gtkmm3: `3.24.7 --> 3.24.9`
 - gtksourceview3: `(new package) --> 3.24.11-28-g73e57b5`
 - gtksourceview4: `(new package) --> 4.8.4`
-- Gtkmm3: `3.24.7 --> 3.24.9`
+- gtksourceview5: `(new package) --> 5.14.2`
 - GVFS: `1.50.2 --> 1.56.1`
 - gz2xz: `1.1.0 --> (removed)`
 - Gzip: `1.12 --> 1.13`
@@ -220,7 +223,7 @@ Upgraded software (core):
 - highway: `(new package) --> 1.2.0`
 - HPLIP: `3.22.6 --> 3.24.4`
 - htop: `3.2.1 --> 3.3.0`
-- hwdata: `0.363 --> 0.391`
+- hwdata: `0.363 --> 0.392`
 - hyfetch: `(new package) --> 1.99.0`
 - iana-etc: `20220922 --> 20250123`
 - iceauth: `1.0.9 --> 1.0.10`
@@ -245,7 +248,7 @@ Upgraded software (core):
 - jq: `1.6 --> 1.7.1`
 - JSON: `4.09 --> 4.10`
 - JSON-C: `0.16 --> 0.18`
-- JSON-GLib: `1.6.6 --> 1.10.0`
+- JSON-GLib: `1.6.6 --> 1.10.6`
 - jsoncpp: `1.9.5 --> 1.9.6`
 - kbd: `2.5.1 --> 2.7.1`
 - keyutils: `(new package) --> 1.6.3`
@@ -354,7 +357,8 @@ Upgraded software (core):
 - libsoup: `2.74.2 --> 2.74.3`
 - libsoup3: `3.2.0 --> 3.6.4`
 - libssh2: `1.10.0 --> 1.11.1`
-- libsysprof-capture: `3.46.0 --> 47.1`
+- libsysprof-capture: `3.46.0 --> 47.2`
+- libtasn1: `4.19.0 --> 4.20.0`
 - libtiff: `4.4.0 --> 4.7.0`
 - libtirpc: `1.3.3 --> 1.3.6`
 - libtool: `2.4.7 --> 2.5.4`
@@ -406,9 +410,9 @@ Upgraded software (core):
 - libXxf86dga: `1.1.5 --> 1.1.6`
 - libXxf86vm: `1.1.5 --> 1.1.6`
 - libzip: `1.9.2 --> 1.11.2`
-- Linux: `6.0.0 --> 6.13.1`
-- Linux-API-Headers: `6.0.0 --> 6.13.1`
-- Linux-Headers: `6.0.0 --> 6.13.1`
+- Linux: `6.0.0 --> 6.13.2`
+- Linux-API-Headers: `6.0.0 --> 6.13.2`
+- Linux-Headers: `6.0.0 --> 6.13.2`
 - Linux-PAM: `1.5.2 --> 1.7.0`
 - LLD: `14.0.6 --> 19.1.7`
 - LLVM: `14.0.6 --> 19.1.7`
@@ -424,7 +428,7 @@ Upgraded software (core):
 - lzip: `1.22 --> 1.24.1`
 - make-ca: `1.10 --> 1.14`
 - Make: `4.3 --> 4.4.1`
-- Mako: `1.2.1 --> 1.3.7`
+- Mako: `1.2.1 --> 1.3.9`
 - Man-DB: `2.10.2 --> 2.13.0`
 - man-pages: `5.13 --> 6.10`
 - Markdown: `3.3.6 --> 3.7`
@@ -438,6 +442,7 @@ Upgraded software (core):
 - meson-python: `(new package) --> 0.17.1`
 - minizip: `1.2.13 --> 1.3.1`
 - mkfontscale: `1.2.2 --> 1.2.3`
+- mm-common: `(new package) --> 1.0.6`
 - mobile-broadband-provider-info: `20220725 --> 20240407`
 - ModemManager: `1.18.8 --> 1.22.0`
 - moreutils: `0.67 --> 0.69`
@@ -466,7 +471,7 @@ Upgraded software (core):
 - noto-fonts-emoji: `20220920 --> 2.047`
 - npth: `1.6 --> 1.8`
 - NSPR: `4.35 --> 4.36`
-- NSS: `3.83 --> 3.107`
+- NSS: `3.83 --> 3.108`
 - ntfs-3g: `2022.5.17 --> 2022.10.3`
 - nv-codec-headers: `(new package) --> 12.2.72.0`
 - nvidia-modules-open: `(new package) --> 570.86.16`
@@ -496,7 +501,7 @@ Upgraded software (core):
 - pathspec: `(new package) --> 0.12.1`
 - pcaudiolib: `(new package) --> 1.3`
 - pciutils: `3.8.0 --> 3.13.0`
-- PCRE2: `10.40 --> 10.44`
+- PCRE2: `10.40 --> 10.45`
 - pefile: `(new package) --> 2024.8.26`
 - Perl: `5.36.0 --> 5.40.1`
 - pexpect: `4.8.0 --> 4.9`
@@ -512,7 +517,7 @@ Upgraded software (core):
 - Plymouth: `22.02.122 --> 24.004.60`
 - poetry-core: `(new package) --> 1.9.1`
 - Polkit: `121 --> 126`
-- Poppler: `22.09.0 --> 25.01.0`
+- Poppler: `22.09.0 --> 25.02.0`
 - poppler-data: `0.4.11 --> 0.4.12`
 - power-profiles-daemon: `0.12 --> 0.23`
 - ppp: `2.4.9 --> 2.5.1`
@@ -677,7 +682,7 @@ Upgraded software (core):
 - xsetroot: `1.1.2 --> 1.1.3`
 - xtrans: `1.4.0 --> 1.5.2`
 - xvinfo: `1.1.4 --> 1.1.5`
-- Xwayland: `22.1.3 --> 24.1.4`
+- Xwayland: `22.1.3 --> 24.1.5`
 - xwd: `1.0.8 --> 1.0.9`
 - xwininfo: `1.1.5 --> 1.1.6`
 - xwud: `1.0.6 --> 1.0.7`
@@ -703,7 +708,9 @@ Upgraded software (Xfce):
 - Exo: `4.17.2 --> 4.20.0`
 - Firefox: `105.0.1 --> 135.0`
 - FreeRDP: `2.8.0 --> (removed)`
+- Galculator: `2.1.4 --> (removed)`
 - Garcon: `4.17.1 --> 4.20.0`
+- GNOME-Calculator: `(new package) --> 47.1`
 - gnome-disk-utility: `(new package) --> 46.1`
 - GNOME-Firmware: `41.0 --> 47.0`
 - GNOME-Software: `41.5 --> 47.4`
