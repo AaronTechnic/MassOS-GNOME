@@ -8,6 +8,7 @@ amf-headers
 apparmor
 appstream
 appstream-glib
+aria2
 asciidoc
 aspell
 aspell-en
@@ -77,6 +78,7 @@ dbus
 dbus-glib
 dbus-python
 dconf
+dconf-editor
 desktop-file-utils
 dhcpcd
 dialog
@@ -339,6 +341,7 @@ libmicrodns
 libmnl
 libmodplug
 libmpeg2
+libmspack
 libmtp
 libndp
 libnfs
@@ -525,6 +528,7 @@ nvidia-modules-open
 nvidia-vaapi-driver
 nvme-cli
 oniguruma
+open-vm-tools
 openal
 openh264
 openjade
@@ -596,6 +600,7 @@ python-dbusmock
 python-distutils-extra
 pyxdg
 pyyaml
+qemu-guest-agent
 qpdf
 qrencode
 rav1e
@@ -645,6 +650,8 @@ soundtouch
 speech-dispatcher
 speex
 speexdsp
+spice-protocol
+spice-vdagent
 spirv-headers
 spirv-llvm-translator
 spirv-tools
@@ -754,9 +761,9 @@ xlsatoms
 xlsclients
 xmessage
 xml-parser
+xmlsec
 xmlto
 xmodmap
-xorg-font-util
 xorg-fonts
 xorg-server
 xorgproto

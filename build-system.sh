@@ -918,13 +918,13 @@ install -t /usr/share/licenses/setuptools -Dm644 LICENSE
 popd
 rm -rf setuptools-75.8.0
 # pip.
-tar -xf ../sources/pip-25.0.tar.gz
-pushd pip-25.0
+tar -xf ../sources/pip-25.0.1.tar.gz
+pushd pip-25.0.1
 pip --disable-pip-version-check wheel --no-build-isolation --no-cache-dir --no-deps -w dist .
 pip --disable-pip-version-check install --root-user-action ignore --compile --no-cache-dir --no-index --no-user -f dist pip --upgrade
 install -t /usr/share/licenses/pip -Dm644 LICENSE.txt
 popd
-rm -rf pip-25.0
+rm -rf pip-25.0.1
 # packaging.
 tar -xf ../sources/packaging-24.2.tar.gz
 pushd packaging-24.2
@@ -1100,6 +1100,16 @@ ninja -C build install
 install -t /usr/share/licenses/libsfdo -Dm644 LICENSE
 popd
 rm -rf libsfdo-v0.1.3
+# libmspack.
+tar -xf ../sources/libmspack-1.11.tar.gz
+pushd libmspack-1.11/libmspack
+./autogen.sh
+./configure --prefix=/usr --disable-static
+make
+make install
+install -t /usr/share/licenses/libmspack -Dm644 COPYING.LIB
+popd
+rm -rf libmspack-1.11
 # libseccomp.
 tar -xf ../sources/libseccomp-2.6.0.tar.gz
 pushd libseccomp-2.6.0
@@ -2526,17 +2536,19 @@ install -t /usr/share/licenses/udftools -Dm644 COPYING
 popd
 rm -rf udftools-2.3
 # Fakeroot.
-tar -xf ../sources/fakeroot_1.36.2.orig.tar.gz
-pushd fakeroot-1.36.2
+tar -xf ../sources/fakeroot-upstream-1.37.tar.bz2
+pushd fakeroot-upstream-1.37
+./bootstrap
 ./configure --prefix=/usr --libdir=/usr/lib/libfakeroot --disable-static
 make
+sed -i 's/de es fr nl pt ro sv//' doc/Makefile
 make install
 install -dm755 /etc/ld.so.conf.d
 echo "/usr/lib/libfakeroot" > /etc/ld.so.conf.d/fakeroot.conf
 ldconfig
 install -t /usr/share/licenses/fakeroot -Dm644 COPYING
 popd
-rm -rf fakeroot-1.36.2
+rm -rf fakeroot-upstream-1.37
 # Parted.
 tar -xf ../sources/parted-3.6.tar.xz
 pushd parted-3.6
@@ -2576,6 +2588,15 @@ install -t /usr/share/man/man8 -Dm644 run-parts.8
 install -t /usr/share/licenses/run-parts -Dm644 /usr/share/licenses/gptfdisk/COPYING
 popd
 rm -rf debianutils-5.5
+# spice-protocol.
+tar -xf ../sources/spice-protocol-v0.14.4.tar.bz2
+pushd spice-protocol-v0.14.4
+meson setup build --prefix=/usr --sbindir=bin --buildtype=minsize
+ninja -C build
+ninja -C build install
+install -t /usr/share/licenses/spice-protocol -Dm644 COPYING
+popd
+rm -rf spice-protocol-v0.14.4
 # seatd.
 tar -xf ../sources/seatd-0.9.1.tar.gz
 pushd seatd-0.9.1
@@ -2964,14 +2985,14 @@ install -t /usr/share/licenses/nettle -Dm644 COPYINGv2 COPYINGv3 COPYING.LESSERv
 popd
 rm -rf nettle-3.10.1
 # GNUTLS.
-tar -xf ../sources/gnutls-3.8.8.tar.xz
-pushd gnutls-3.8.8
+tar -xf ../sources/gnutls-3.8.9.tar.xz
+pushd gnutls-3.8.9
 ./configure --prefix=/usr --disable-rpath --disable-static --with-default-trust-store-pkcs11="pkcs11:" --enable-openssl-compatibility --enable-ssl3-support
 make
 make install
-install -t /usr/share/licenses/gnutls -Dm644 LICENSE
+install -t /usr/share/licenses/gnutls -Dm644 COPYING{,.LESSERv2}
 popd
-rm -rf gnutls-3.8.8
+rm -rf gnutls-3.8.9
 # libevent.
 tar -xf ../sources/libevent-2.1.12-stable.tar.gz
 pushd libevent-2.1.12-stable
@@ -3190,6 +3211,15 @@ make install
 install -t /usr/share/licenses/wget -Dm644 COPYING
 popd
 rm -rf wget-1.25.0
+# aria2.
+tar -xf ../sources/aria2-1.37.0.tar.xz
+pushd aria2-1.37.0
+./configure --prefix=/usr --with-bashcompletiondir=/usr/share/bash-completion/completions --with-ca-bundle=/etc/pki/tls/certs/ca-bundle.crt --enable-libaria2 --with-libuv
+make
+make install
+install -t /usr/share/licenses/aria2 -Dm644 COPYING
+popd
+rm -rf aria2-1.37.0
 # Audit.
 tar -xf ../sources/audit-userspace-4.0.2.tar.gz
 pushd audit-userspace-4.0.2
@@ -3386,6 +3416,16 @@ make MODDIR=/usr/lib/modules SBIN=/usr/bin install
 install -t /usr/share/licenses/dkms -Dm644 COPYING
 popd
 rm -rf dkms-3.1.4
+# xmlsec.
+tar -xf ../sources/xmlsec-1.3.6.tar.gz
+pushd xmlsec-1.3.6
+autoreconf -fi
+./configure --prefix=/usr --disable-static --disable-docs --enable-openssl3-engines
+make
+make install
+install -t /usr/share/licenses/xmlsec -Dm644 Copyright
+popd
+rm -rf xmlsec-1.3.6
 # GLib (initial build for circular dependency).
 tar -xf ../sources/glib-2.82.4.tar.gz
 pushd glib-2.82.4
@@ -4362,23 +4402,23 @@ install -t /usr/share/licenses/directx-headers -Dm644 LICENSE
 popd
 rm -rf DirectX-Headers-1.614.1
 # SPIRV-Headers.
-tar -xf ../sources/SPIRV-Headers-vulkan-sdk-1.4.304.0.tar.gz
-pushd SPIRV-Headers-vulkan-sdk-1.4.304.0
+tar -xf ../sources/SPIRV-Headers-vulkan-sdk-1.4.304.1.tar.gz
+pushd SPIRV-Headers-vulkan-sdk-1.4.304.1
 cmake -DCMAKE_BUILD_TYPE=MinSizeRel -DCMAKE_INSTALL_PREFIX=/usr -Wno-dev -G Ninja -B build
 ninja -C build
 ninja -C build install
 install -t /usr/share/licenses/spirv-headers -Dm644 LICENSE
 popd
-rm -rf SPIRV-Headers-vulkan-sdk-1.4.304.0
+rm -rf SPIRV-Headers-vulkan-sdk-1.4.304.1
 # SPIRV-Tools.
-tar -xf ../sources/SPIRV-Tools-vulkan-sdk-1.4.304.0.tar.gz
-pushd SPIRV-Tools-vulkan-sdk-1.4.304.0
+tar -xf ../sources/SPIRV-Tools-vulkan-sdk-1.4.304.1.tar.gz
+pushd SPIRV-Tools-vulkan-sdk-1.4.304.1
 cmake -DCMAKE_BUILD_TYPE=MinSizeRel -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS=ON -DSPIRV_TOOLS_BUILD_STATIC=OFF -DSPIRV_WERROR=OFF -DSPIRV-Headers_SOURCE_DIR=/usr -Wno-dev -G Ninja -B build
 ninja -C build
 ninja -C build install
 install -t /usr/share/licenses/spirv-tools -Dm644 LICENSE
 popd
-rm -rf SPIRV-Tools-vulkan-sdk-1.4.304.0
+rm -rf SPIRV-Tools-vulkan-sdk-1.4.304.1
 # SPIRV-LLVM-Translator.
 tar -xf ../sources/SPIRV-LLVM-Translator-19.1.4.tar.gz
 pushd SPIRV-LLVM-Translator-19.1.4
@@ -4420,23 +4460,23 @@ install -t /usr/share/licenses/shaderc -Dm644 LICENSE
 popd
 rm -rf shaderc-2024.4
 # Vulkan-Headers.
-tar -xf ../sources/Vulkan-Headers-vulkan-sdk-1.4.304.tar.gz
-pushd Vulkan-Headers-vulkan-sdk-1.4.304
+tar -xf ../sources/Vulkan-Headers-vulkan-sdk-1.4.304.1.tar.gz
+pushd Vulkan-Headers-vulkan-sdk-1.4.304.1
 cmake -DCMAKE_BUILD_TYPE=MinSizeRel -DCMAKE_INSTALL_PREFIX=/usr -Wno-dev -G Ninja -B build
 ninja -C build
 ninja -C build install
 install -t /usr/share/licenses/vulkan-headers -Dm644 LICENSE.md
 popd
-rm -rf Vulkan-Headers-vulkan-sdk-1.4.304
+rm -rf Vulkan-Headers-vulkan-sdk-1.4.304.1
 # Vulkan-Loader.
-tar -xf ../sources/Vulkan-Loader-vulkan-sdk-1.4.304.tar.gz
-pushd Vulkan-Loader-vulkan-sdk-1.4.304
+tar -xf ../sources/Vulkan-Loader-vulkan-sdk-1.4.304.1.tar.gz
+pushd Vulkan-Loader-vulkan-sdk-1.4.304.1
 cmake -DCMAKE_BUILD_TYPE=MinSizeRel -DCMAKE_INSTALL_PREFIX=/usr -DVULKAN_HEADERS_INSTALL_DIR=/usr -DCMAKE_INSTALL_LIBDIR=lib -DCMAKE_INSTALL_SYSCONFDIR=/etc -DCMAKE_INSTALL_DATADIR=/share -DCMAKE_SKIP_RPATH=TRUE -DBUILD_TESTS=OFF -DBUILD_WSI_XCB_SUPPORT=ON -DBUILD_WSI_XLIB_SUPPORT=ON -DBUILD_WSI_WAYLAND_SUPPORT=ON -Wno-dev -G Ninja -B build
 ninja -C build
 ninja -C build install
 install -t /usr/share/licenses/vulkan-loader -Dm644 LICENSE.txt
 popd
-rm -rf Vulkan-Loader-vulkan-sdk-1.4.304
+rm -rf Vulkan-Loader-vulkan-sdk-1.4.304.1
 # ORC.
 tar -xf ../sources/orc-0.4.40.tar.bz2
 pushd orc-0.4.40
@@ -4448,8 +4488,8 @@ install -t /usr/share/licenses/orc -Dm644 COPYING
 popd
 rm -rf orc-0.4.40
 # Vulkan-Tools.
-tar -xf ../sources/Vulkan-Tools-vulkan-sdk-1.4.304.0.tar.gz
-pushd Vulkan-Tools-vulkan-sdk-1.4.304.0
+tar -xf ../sources/Vulkan-Tools-vulkan-sdk-1.4.304.1.tar.gz
+pushd Vulkan-Tools-vulkan-sdk-1.4.304.1
 mkdir -p volk
 tar -xf ../../sources/volk-1.4.304.tar.gz -C volk --strip-components=1
 cmake -DCMAKE_INSTALL_PREFIX="$PWD/volk/install" -DCMAKE_BUILD_TYPE=MinSizeRel -DVOLK_INSTALL=ON -Wno-dev -G Ninja -B volk/build -S volk
@@ -4463,7 +4503,7 @@ ninja -C build install
 install -Dm755 build-wayland/cube/vkcube /usr/bin/vkcube-wayland
 install -t /usr/share/licenses/vulkan-tools -Dm644 LICENSE.txt
 popd
-rm -rf Vulkan-Tools-vulkan-sdk-1.4.304.0
+rm -rf Vulkan-Tools-vulkan-sdk-1.4.304.1
 # libva (circular dependency; will be rebuilt later to support Mesa).
 tar -xf ../sources/libva-2.22.0.tar.bz2
 pushd libva-2.22.0
@@ -5431,6 +5471,15 @@ ninja -C build install
 install -t /usr/share/licenses/libhandy -Dm644 COPYING
 popd
 rm -rf libhandy-1.8.3
+# dconf-editor.
+tar -xf ../sources/dconf-editor-45.0.1.tar.gz
+cd dconf-editor-45.0.1
+meson setup build --prefix=/usr --sbindir=bin --buildtype=minsize
+ninja -C build
+ninja -C build install
+install -t /usr/share/licenses/dconf-editor -Dm644 COPYING
+cd ..
+rm -rf dconf-editor-45.0.1
 # libdecor.
 tar -xf ../sources/libdecor-0.2.2.tar.gz
 pushd libdecor-0.2.2
@@ -7602,6 +7651,53 @@ install -t /usr/bin -Dm755 busybox
 install -t /usr/share/licenses/busybox -Dm644 LICENSE
 popd
 rm -rf busybox-1.37.0
+# qemu-guest-agent.
+tar -xf ../sources/qemu-9.2.0.tar.xz
+pushd qemu-9.2.0
+patch -Np1 -i ../../patches/qemu-9.2.0-glibc241fix.patch
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --sbindir=/usr/bin --disable-docs --target-list=x86_64-linux-user,x86_64-softmmu
+make
+install -t /usr/bin -Dm755 build/qga/qemu-ga
+install -t /etc/qemu -Dm755 scripts/qemu-guest-agent/fsfreeze-hook
+cat > /etc/qemu/qemu-ga.conf << "END"
+[general]
+daemonize = 0
+verbose = 0
+method = virtio-serial
+path = /dev/virtio-ports/org.qemu.guest_agent.0
+pidfile = /run/qemu-ga.pid
+statedir = /run
+fsfreeze-hook = /etc/qemu/fsfreeze-hook
+END
+install -t /usr/lib/systemd/system -Dm644 contrib/systemd/qemu-guest-agent.service
+echo 'SUBSYSTEM=="virtio-ports", ATTR{name}=="org.qemu.guest_agent.0", TAG+="systemd" ENV{SYSTEMD_WANTS}="qemu-guest-agent.service"' > /usr/lib/udev/rules.d/99-qemu-guest-agent.rules
+install -t /usr/share/licenses/qemu-guest-agent -Dm644 COPYING{,.LIB} LICENSE
+popd
+rm -rf qemu-9.2.0
+# spice-vdagent.
+tar -xf ../sources/spice-vdagent-0.22.1.tar.bz2
+pushd spice-vdagent-0.22.1
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --sbindir=/usr/bin --with-init-script=systemd --with-session-info=systemd
+make
+make install
+install -t /usr/share/licenses/spice-vdagent -Dm644 COPYING
+popd
+rm -rf spice-vdagent-0.22.1
+# open-vm-tools.
+tar -xf ../sources/open-vm-tools-stable-12.5.0.tar.gz
+pushd open-vm-tools-stable-12.5.0/open-vm-tools
+autoreconf -fi
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --sbindir=/usr/bin --disable-static --with-udev-rules-dir=/usr/lib/udev/rules.d --disable-docs --disable-tests --without-kernel-modules --disable-containerinfo
+make
+make install
+chmod 7755 /usr/bin/vmware-user-suid-wrapper
+install -t /usr/bin -Dm755 scripts/common/vmware-xdg-detect-de
+cp /etc/pam.d/{polkit-1,vmtoolsd}
+systemctl enable vmtoolsd
+systemctl enable vmware-vmblock-fuse
+install -t /usr/share/licenses/open-vm-tools -Dm644 COPYING LICENSE
+popd
+rm -rf open-vm-tools-stable-12.5.0
 # Linux / Linux-Headers.
 tar -xf ../sources/linux-6.13.2.tar.xz
 pushd linux-6.13.2
@@ -7660,7 +7756,7 @@ rm -rf open-gpu-kernel-modules-570.86.16
 gcc $CFLAGS ../sources/massos-release.c -o massos-release
 install -t /usr/bin -Dm755 massos-release
 # Determine the version of osinstallgui that should be used by the Live CD.
-echo "0.3.0" > /usr/share/massos/.osinstallguiver
+echo "0.4.1" > /usr/share/massos/.osinstallguiver
 # Determine firmware versions that should be installed.
 cat > /usr/share/massos/firmwareversions << "END"
 # DO NOT EDIT THIS FILE!

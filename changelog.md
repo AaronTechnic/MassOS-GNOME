@@ -20,6 +20,7 @@ Changes:
 - Dropped old Xorg input drivers which are replaced by libinput.
 - Renamed NVIDIA-Open-Kernel-Modules package to nvidia-modules-open, and marked as provides nvidia-modules.
 - Split Noto fonts package into normal fonts, CJK fonts and emoji fonts.
+- Added qemu-guest-agent, spice-vdagent and open-vm-tools, to improve the experience when running MassOS in a VM.
 - Added new default GRUB theme for MassOS based on distro-grub-themes.
 - Added GTK4 and libadwaita to the core MassOS system, to support future programs which depend on them.
 - Added zsh and fish, both of which can optionally be used for the shell instead of the default Bash.
@@ -53,6 +54,7 @@ Upgraded software (core):
 - AppArmor: `3.1.1 --> 4.0.3`
 - AppStream: `0.15.5 --> 1.0.4`
 - appstream-glib: `0.8.0 --> 0.8.3`
+- aria2: `(new package) --> 1.37.0`
 - Asciidoc: `10.2.0 --> 10.2.1`
 - Aspell: `0.60.8 --> 0.60.8.1`
 - at-spi2-core: `2.46.0 --> 2.54.1`
@@ -107,6 +109,7 @@ Upgraded software (core):
 - D-Bus: `1.14.2 --> 1.16.0`
 - dav1d: `1.0.0 --> 1.5.1`
 - dconf: `(new package) --> 0.40.0`
+- dconf-editor: `(new package) --> 45.0.1`
 - desktop-file-utils: `0.27 --> 0.28`
 - dhcpcd: `9.4.1 --> 10.1.0`
 - dialog: `1.3-20220728 --> 1.3-20240619`
@@ -136,7 +139,7 @@ Upgraded software (core):
 - f2fs-tools: `(new package) --> 1.16.0`
 - FAAC: `(new package) --> 1.30`
 - FAAD2: `2.10.0 --> 2.10.1`
-- Fakeroot: `1.29 --> 1.36.2`
+- Fakeroot: `1.29 --> 1.37`
 - fastfetch: `(new package) --> 2.34.1`
 - fastjsonschema: `(new package) --> 2.21.0`
 - FFmpeg: `5.1.2 --> 7.1`
@@ -182,7 +185,7 @@ Upgraded software (core):
 - gnome-online-accounts: `3.46.0 --> 3.52.3`
 - GNU-EFI: `3.0.15 --> 3.0.18`
 - GNUPG: `2.3.7 --> 2.5.1`
-- GNUTLS: `3.7.8 --> 3.8.8`
+- GNUTLS: `3.7.8 --> 3.8.9`
 - gobject-introspection: `1.74.0 --> 1.82.0`
 - GPGME: `1.18.0 --> 1.24.1`
 - gPlanarity: `(new package) --> 17906`
@@ -317,6 +320,7 @@ Upgraded software (core):
 - libldap: `2.6.3 --> 2.6.9`
 - libmanette: `(new package) --> 0.2.9`
 - libmbim: `1.26.4 --> 1.30.0`
+- libmspack: `(new package) --> 1.11`
 - libmtp: `1.1.20 --> 1.1.22`
 - libndp: `1.8 --> 1.9`
 - libnfs: `4.0.0 --> 5.0.3`
@@ -479,6 +483,7 @@ Upgraded software (core):
 - NVIDIA-Open-Kernel-Modules: `515.76 --> (removed)`
 - nvme-cli: `(new package) --> 2.11`
 - oniguruma: `6.9.8 --> 6.9.9`
+- open-vm-tools: `(new package) --> 12.5.0`
 - OpenAL: `1.22.2 --> 1.24.1`
 - OpenH264: `2.3.1 --> 2.5.0`
 - OpenJPEG: `2.5.0 --> 2.5.3`
@@ -510,7 +515,7 @@ Upgraded software (core):
 - pkgconf: `(new package) --> 2.3.0`
 - pigz: `2.6 --> 2.8`
 - pinentry: `1.2.1 --> 1.3.1`
-- pip: `(new package) --> 25.0`
+- pip: `(new package) --> 25.0.1`
 - PipeWire: `0.3.59 --> 1.2.7`
 - Pixman: `0.40.0 --> 0.44.2`
 - pluggy: `(new package) --> 1.5.0`
@@ -540,6 +545,7 @@ Upgraded software (core):
 - python-dbusmock: `0.28.4 --> 0.32.2`
 - pyxdg: `(new package) --> 0.28`
 - PyYAML: `(new package) --> 6.0.2`
+- qemu-guest-agent: `(new package) --> 9.2.0`
 - Qpdf: `11.1.1 --> 11.9.1`
 - rav1e: `0.5.1 --> 0.7.1`
 - rdfind: `(new package) --> 1.6.0`
@@ -574,9 +580,11 @@ Upgraded software (core):
 - smproxy: `1.0.6 --> 1.0.7`
 - SoundTouch: `2.3.1 --> 2.3.3`
 - speech-dispatcher: `(new package) --> 0.11.5`
-- SPIRV-Headers: `1.3.216.0 --> 1.4.304.0`
+- spice-protocol: `(new package) --> 0.14.4`
+- spice-vdagent: `(new package) --> 0.22.1`
+- SPIRV-Headers: `1.3.216.0 --> 1.4.304.1`
 - SPIRV-LLVM-Translator: `(new package) --> 19.1.4`
-- SPIRV-Tools: `2022.2 --> 1.4.304.0`
+- SPIRV-Tools: `2022.2 --> 1.4.304.1`
 - SQLite: `3.39.3 --> 3.48.0`
 - squashfs-tools: `4.5.1 --> 4.6.1`
 - squashfuse: `0.1.105 --> 0.5.2`
@@ -617,9 +625,9 @@ Upgraded software (core):
 - Vim: `9.0.0600 --> 9.1.1050`
 - VTE: `0.70.0 --> 0.78.3`
 - VTE4: `(new package) --> 0.78.3`
-- Vulkan-Headers: `1.3.230 --> 1.4.304`
-- Vulkan-Loader: `1.3.230 --> 1.4.304`
-- Vulkan-Tools: `1.3.230 --> 1.4.304.0`
+- Vulkan-Headers: `1.3.230 --> 1.4.304.1`
+- Vulkan-Loader: `1.3.230 --> 1.4.304.1`
+- Vulkan-Tools: `1.3.230 --> 1.4.304.1`
 - wavpack: `5.5.0 --> 5.7.0`
 - Wayland: `1.21.0 --> 1.23.1`
 - wayland-protocols: `1.26 --> 1.40`
@@ -670,6 +678,7 @@ Upgraded software (core):
 - xlsclients: `1.1.4 --> 1.1.5`
 - xmessage: `1.0.6 --> 1.0.7`
 - XML-Parser: `2.46 --> 2.47`
+- xmlsec: `(new package) --> 1.3.6`
 - xmlto: `0.0.28 --> 0.0.29`
 - Xorg-Server: `21.1.4 --> 21.1.15`
 - xorgproto: `2022.2 --> 2024.1`

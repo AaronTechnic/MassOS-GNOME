@@ -1,0 +1,10 @@
+[Unit]
+Description=VMware Open VM Tools
+ConditionVirtualization=vmware
+After=display-manager.service
+
+[Service]
+ExecStart=/usr/bin/vmtoolsd
+
+[Install]
+WantedBy=multi-user.target

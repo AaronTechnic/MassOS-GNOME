@@ -8,6 +8,7 @@ https://github.com/GPUOpen-LibrariesAndSDKs/AMF/releases/download/v1.4.35/AMF-he
 https://launchpad.net/apparmor/4.0/4.0.3/+download/apparmor-4.0.3.tar.gz
 https://www.freedesktop.org/software/appstream/releases/AppStream-1.0.4.tar.xz
 https://github.com/hughsie/appstream-glib/archive/refs/tags/appstream_glib_0_8_3.tar.gz
+https://github.com/aria2/aria2/releases/download/release-1.37.0/aria2-1.37.0.tar.xz
 https://files.pythonhosted.org/packages/source/a/asciidoc/asciidoc-10.2.1.tar.gz
 https://mirror.lyrahosting.com/gnu/aspell/aspell-0.60.8.1.tar.gz
 https://mirror.lyrahosting.com/gnu/aspell/dict/en/aspell6-en-2020.12.07-0.tar.bz2
@@ -80,6 +81,7 @@ https://github.com/cyrusimap/cyrus-sasl/releases/download/cyrus-sasl-2.1.28/cyru
 https://github.com/cython/cython/releases/download/3.0.11-1/cython-3.0.11.tar.gz
 https://code.videolan.org/videolan/dav1d/-/archive/1.5.1/dav1d-1.5.1.tar.bz2
 https://github.com/GNOME/dconf/archive/0.40.0/dconf-0.40.0.tar.gz
+https://github.com/GNOME/dconf-editor/archive/45.0.1/dconf-editor-45.0.1.tar.gz
 https://dbus.freedesktop.org/releases/dbus/dbus-1.16.0.tar.xz
 https://dbus.freedesktop.org/releases/dbus-glib/dbus-glib-0.112.tar.gz
 https://dbus.freedesktop.org/releases/dbus-python/dbus-python-1.3.2.tar.gz
@@ -128,7 +130,7 @@ https://github.com/libexpat/libexpat/releases/download/R_2_6_4/expat-2.6.4.tar.x
 https://git.kernel.org/pub/scm/linux/kernel/git/jaegeuk/f2fs-tools.git/snapshot/f2fs-tools-1.16.0.tar.gz
 https://github.com/knik0/faac/archive/1_30/faac-1_30.tar.gz
 https://github.com/knik0/faad2/archive/2.11.1/faad2-2.11.1.tar.gz
-http://ftp.debian.org/debian/pool/main/f/fakeroot/fakeroot_1.36.2.orig.tar.gz
+https://salsa.debian.org/clint/fakeroot/-/archive/upstream/1.37/fakeroot-upstream-1.37.tar.bz2
 https://github.com/fastfetch-cli/fastfetch/archive/2.34.1/fastfetch-2.34.1.tar.gz
 https://files.pythonhosted.org/packages/source/f/fastjsonschema/fastjsonschema-2.21.0.tar.gz
 https://github.com/yo8192/fcron/archive/ver3_3_1/fcron-ver3_3_1.tar.gz
@@ -183,7 +185,7 @@ https://github.com/GNOME/gnome-online-accounts/archive/3.52.3/gnome-online-accou
 https://mirrors.dotsrc.org/gnome/sources/gnome-themes-extra/3.28/gnome-themes-extra-3.28.tar.xz
 https://freefr.dl.sourceforge.net/project/gnu-efi/gnu-efi-3.0.18.tar.bz2
 https://www.gnupg.org/ftp/gcrypt/gnupg/gnupg-2.5.1.tar.bz2
-https://www.gnupg.org/ftp/gcrypt/gnutls/v3.8/gnutls-3.8.8.tar.xz
+https://www.gnupg.org/ftp/gcrypt/gnutls/v3.8/gnutls-3.8.9.tar.xz
 https://dl.google.com/go/go1.23.4.linux-amd64.tar.gz
 https://github.com/GNOME/gobject-introspection/archive/1.82.0/gobject-introspection-1.82.0.tar.gz
 https://mirror.lyrahosting.com/gnu/gperf/gperf-3.1.tar.gz
@@ -348,6 +350,7 @@ https://launchpad.net/libmetalink/trunk/libmetalink-0.1.3/+download/libmetalink-
 https://www.netfilter.org/pub/libmnl/libmnl-1.0.5.tar.bz2
 https://freefr.dl.sourceforge.net/project/modplug-xmms/libmodplug/0.8.9.0/libmodplug-0.8.9.0.tar.gz
 https://github.com/cisco-open-source/libmpeg2/archive/upstream%2F0.5.1/libmpeg2-upstream-0.5.1.tar.gz
+https://github.com/kyz/libmspack/archive/v1.11/libmspack-1.11.tar.gz
 https://github.com/libmtp/libmtp/releases/download/v1.1.22/libmtp-1.1.22.tar.gz
 https://mirror.lyrahosting.com/ubuntuarchive/ubuntu/pool/main/libn/libndp/libndp_1.9.orig.tar.gz
 https://www.netfilter.org/pub/libnfnetlink/libnfnetlink-1.0.2.tar.bz2
@@ -528,6 +531,7 @@ https://github.com/elFarto/nvidia-vaapi-driver/archive/v0.0.13/nvidia-vaapi-driv
 https://github.com/linux-nvme/nvme-cli/archive/v2.11/nvme-cli-2.11.tar.gz
 https://github.com/kkos/oniguruma/releases/download/v6.9.9/onig-6.9.9.tar.gz
 https://github.com/NVIDIA/open-gpu-kernel-modules/archive/570.86.16/open-gpu-kernel-modules-570.86.16.tar.gz
+https://github.com/vmware/open-vm-tools/archive/stable-12.5.0/open-vm-tools-stable-12.5.0.tar.gz
 https://github.com/kcat/openal-soft/archive/1.24.1/openal-soft-1.24.1.tar.gz
 https://github.com/cisco/openh264/archive/v2.5.0/openh264-2.5.0.tar.gz
 https://freefr.dl.sourceforge.net/project/openjade/openjade/1.3.2/openjade-1.3.2.tar.gz
@@ -564,7 +568,7 @@ https://github.com/OpenSC/pkcs11-helper/releases/download/pkcs11-helper-1.30.0/p
 https://distfiles.ariadne.space/pkgconf/pkgconf-2.3.0.tar.xz
 https://github.com/madler/pigz/archive/v2.8/pigz-2.8.tar.gz
 https://www.gnupg.org/ftp/gcrypt/pinentry/pinentry-1.3.1.tar.bz2
-https://github.com/pypa/pip/archive/25.0/pip-25.0.tar.gz
+https://github.com/pypa/pip/archive/25.0.1/pip-25.0.1.tar.gz
 https://gitlab.freedesktop.org/pipewire/pipewire/-/archive/1.2.7/pipewire-1.2.7.tar.bz2
 https://www.x.org/archive/individual/lib/pixman-0.44.2.tar.xz
 https://files.pythonhosted.org/packages/source/p/pluggy/pluggy-1.5.0.tar.gz
@@ -599,6 +603,7 @@ https://files.pythonhosted.org/packages/source/p/python-dbusmock/python-dbusmock
 https://launchpad.net/python-distutils-extra/trunk/2.39/+download/python-distutils-extra-2.39.tar.gz
 https://files.pythonhosted.org/packages/source/p/pyxdg/pyxdg-0.28.tar.gz
 https://files.pythonhosted.org/packages/source/P/PyYAML/pyyaml-6.0.2.tar.gz
+https://download.qemu.org/qemu-9.2.0.tar.xz
 https://github.com/qpdf/qpdf/releases/download/v11.9.1/qpdf-11.9.1.tar.gz
 https://fukuchi.org/works/qrencode/qrencode-4.1.1.tar.bz2
 https://github.com/xiph/rav1e/archive/v0.7.1/rav1e-0.7.1.tar.gz
@@ -650,9 +655,11 @@ https://github.com/brailcom/speechd/releases/download/0.11.5/speech-dispatcher-0
 https://downloads.xiph.org/releases/speex/speex-1.2.1.tar.gz
 https://downloads.xiph.org/releases/speex/speexdsp-1.2.1.tar.gz
 https://dmassey.net/files/dev/sphinx-venv/mbs-revamped/sphinx-20250119-x86_64-python3.13-venv.tar.xz
-https://github.com/KhronosGroup/SPIRV-Headers/archive/vulkan-sdk-1.4.304.0/SPIRV-Headers-vulkan-sdk-1.4.304.0.tar.gz
+https://gitlab.freedesktop.org/spice/spice-protocol/-/archive/v0.14.4/spice-protocol-v0.14.4.tar.bz2
+https://www.spice-space.org/download/releases/spice-vdagent-0.22.1.tar.bz2
+https://github.com/KhronosGroup/SPIRV-Headers/archive/vulkan-sdk-1.4.304.1/SPIRV-Headers-vulkan-sdk-1.4.304.1.tar.gz
 https://github.com/KhronosGroup/SPIRV-LLVM-Translator/archive/v19.1.4/SPIRV-LLVM-Translator-19.1.4.tar.gz
-https://github.com/KhronosGroup/SPIRV-Tools/archive/vulkan-sdk-1.4.304.0/SPIRV-Tools-vulkan-sdk-1.4.304.0.tar.gz
+https://github.com/KhronosGroup/SPIRV-Tools/archive/vulkan-sdk-1.4.304.1/SPIRV-Tools-vulkan-sdk-1.4.304.1.tar.gz
 https://sqlite.org/2025/sqlite-autoconf-3480000.tar.gz
 https://github.com/plougher/squashfs-tools/archive/4.6.1/squashfs-tools-4.6.1.tar.gz
 https://github.com/vasi/squashfuse/releases/download/0.5.2/squashfuse-0.5.2.tar.gz
@@ -703,9 +710,9 @@ https://github.com/vicgeralds/vitetris/archive/v0.59.1/vitetris-0.59.1.tar.gz
 https://github.com/zeux/volk/archive/1.4.304/volk-1.4.304.tar.gz
 https://github.com/felixonmars/volume_key/archive/volume_key-0.3.12.tar.gz
 https://github.com/GNOME/vte/archive/0.78.3/vte-0.78.3.tar.gz
-https://github.com/KhronosGroup/Vulkan-Headers/archive/vulkan-sdk-1.4.304/Vulkan-Headers-vulkan-sdk-1.4.304.tar.gz
-https://github.com/KhronosGroup/Vulkan-Loader/archive/vulkan-sdk-1.4.304/Vulkan-Loader-vulkan-sdk-1.4.304.tar.gz
-https://github.com/KhronosGroup/Vulkan-Tools/archive/vulkan-sdk-1.4.304.0/Vulkan-Tools-vulkan-sdk-1.4.304.0.tar.gz
+https://github.com/KhronosGroup/Vulkan-Headers/archive/vulkan-sdk-1.4.304.1/Vulkan-Headers-vulkan-sdk-1.4.304.1.tar.gz
+https://github.com/KhronosGroup/Vulkan-Loader/archive/vulkan-sdk-1.4.304.1/Vulkan-Loader-vulkan-sdk-1.4.304.1.tar.gz
+https://github.com/KhronosGroup/Vulkan-Tools/archive/vulkan-sdk-1.4.304.1/Vulkan-Tools-vulkan-sdk-1.4.304.1.tar.gz
 https://github.com/dbry/WavPack/releases/download/5.7.0/wavpack-5.7.0.tar.xz
 https://gitlab.freedesktop.org/wayland/wayland/-/releases/1.23.1/downloads/wayland-1.23.1.tar.xz
 https://gitlab.freedesktop.org/wayland/wayland-protocols/-/releases/1.40/downloads/wayland-protocols-1.40.tar.xz
@@ -762,6 +769,7 @@ https://www.x.org/archive/individual/app/xlsatoms-1.1.4.tar.xz
 https://www.x.org/archive/individual/app/xlsclients-1.1.5.tar.xz
 https://www.x.org/archive/individual/app/xmessage-1.0.7.tar.xz
 https://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-2.47.tar.gz
+https://github.com/lsh123/xmlsec/archive/1.3.6/xmlsec-1.3.6.tar.gz
 https://releases.pagure.org/xmlto/xmlto-0.0.29.tar.bz2
 https://www.x.org/archive/individual/app/xmodmap-1.0.11.tar.xz
 https://gitlab.freedesktop.org/xorg/xserver/-/archive/xorg-server-21.1.15.tar.bz2
