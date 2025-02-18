@@ -56,5 +56,6 @@ gtk4-update-icon-cache -q -t -f --include-image-data /usr/share/icons/hicolor
 update-desktop-database
 update-mime-database /usr/share/mime
 dconf update
+systemd-sysusers
 # Last but not least, clean up. Then the build will be ready to go.
 rm -rf /root/mbs

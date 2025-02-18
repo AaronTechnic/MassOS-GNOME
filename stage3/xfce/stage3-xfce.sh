@@ -138,14 +138,14 @@ install -t /usr/share/licenses/garcon -Dm644 COPYING
 popd
 rm -rf garcon-4.20.0
 # Thunar.
-tar -xf ../sources/thunar-4.20.0.tar.bz2
-pushd thunar-4.20.0
+tar -xf ../sources/thunar-4.20.2.tar.bz2
+pushd thunar-4.20.2
 ./configure --prefix=/usr --sysconfdir=/etc --enable-exif --enable-gio-unix --enable-gudev --enable-notifications
 make
 make install
 install -t /usr/share/licenses/thunar -Dm644 COPYING
 popd
-rm -rf thunar-4.20.0
+rm -rf thunar-4.20.2
 # thunar-volman.
 tar -xf ../sources/thunar-volman-4.20.0.tar.bz2
 pushd thunar-volman-4.20.0
@@ -192,14 +192,14 @@ install -t /usr/share/licenses/xfce4-power-manager -Dm644 COPYING
 popd
 rm -rf xfce4-power-manager-4.20.0
 # xfce4-settings.
-tar -xf ../sources/xfce4-settings-4.20.0.tar.bz2
-pushd xfce4-settings-4.20.0
+tar -xf ../sources/xfce4-settings-4.20.1.tar.bz2
+pushd xfce4-settings-4.20.1
 ./configure --prefix=/usr --sysconfdir=/etc --enable-libxklavier --enable-libnotify --enable-pluggable-dialogs --enable-sound-settings --enable-wayland --enable-x11 --enable-xcursor --enable-xrandr
 make
 make install
 install -t /usr/share/licenses/xfce4-settings -Dm644 COPYING
 popd
-rm -rf xfce4-settings-4.20.0
+rm -rf xfce4-settings-4.20.1
 # xfdesktop.
 tar -xf ../sources/xfdesktop-4.20.0.tar.bz2
 pushd xfdesktop-4.20.0
@@ -572,7 +572,7 @@ systemctl enable lightdm
 popd
 rm -rf lightdm-gtk-greeter-2.0.9
 # Firefox.
-tar --no-same-owner -xf ../sources/firefox-135.0.tar.xz -C /usr/lib
+tar --no-same-owner -xf ../sources/firefox-135.0.1.tar.xz -C /usr/lib
 mkdir -p /usr/lib/firefox/distribution
 cat > /usr/lib/firefox/distribution/policies.json << END
 {

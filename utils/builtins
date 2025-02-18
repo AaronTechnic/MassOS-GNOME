@@ -155,6 +155,8 @@ gdbm
 gdk-pixbuf
 geoclue
 geocode-glib
+geographiclib
+geopy
 gettext
 gexiv2
 ghostscript
@@ -178,7 +180,6 @@ gnutls
 gobject-introspection
 gperf
 gpgme
-gplanarity
 gpm
 gptfdisk
 graphene
@@ -201,7 +202,6 @@ gstreamer
 gstreamer-vaapi
 gtk-doc
 gtk-layer-shell
-gtk2
 gtk3
 gtk4
 gtkmm3
@@ -212,6 +212,7 @@ gutenprint
 gvfs
 gzip
 harfbuzz
+hatch-vcs
 hatchling
 help2man
 hicolor-icon-theme
@@ -309,7 +310,6 @@ libfs
 libgcrypt
 libgdata
 libgee
-libglade
 libglvnd
 libgpg-error
 libgphoto2
@@ -515,6 +515,7 @@ networkmanager-openvpn
 newt
 nftables
 ninja
+nlohmann-json
 noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
@@ -540,6 +541,7 @@ openvpn
 opus
 orc
 os-prober
+osm-gps-map
 ostree
 p11-kit
 p7zip
@@ -581,6 +583,7 @@ popt
 power-profiles-daemon
 ppp
 procps-ng
+proot
 psmisc
 ptyprocess
 pulseaudio
@@ -598,6 +601,7 @@ python
 python-certifi
 python-dbusmock
 python-distutils-extra
+pytz
 pyxdg
 pyyaml
 qemu-guest-agent
@@ -667,6 +671,7 @@ swig
 system-config-printer
 systemd
 taglib
+talloc
 tar
 tcl
 texinfo

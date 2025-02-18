@@ -6,7 +6,7 @@
 set -e
 
 # Set the software version.
-ver="0.0.1"
+ver="0.0.2"
 
 # Version of Go. Shouldn't really need to be updated frequently.
 ver_go="1.23.4"

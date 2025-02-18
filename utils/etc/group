@@ -1,8 +1,0 @@
-root:x:0:
-bin:x:1:daemon
-sys:x:2:
-daemon:x:6:
-floppy:x:7:
-lpadmin:x:19:
-mail:x:34:
-scanner:x:70:

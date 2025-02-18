@@ -2,10 +2,12 @@ Stage 3 is a new feature of the MassOS build system, aimed at improving support
 for other desktop environments.
 
 When MassOS development originally began, Xfce was planned to be the only
-officially supported default desktop environment. As a result of that, we made
-the build system heavily focused on Xfce. However, recently some community
-members have begun developing ports for other desktop environments, the main
-one being GNOME, originally by AaronTechnic and now by RetronEletron.
+officially supported default desktop environment. As a result of this, we made
+the build system heavily focused on Xfce. However, development on a GNOME port
+began by a few community members. As a result, we adapted the build system to
+support this, so as to avoid the need to maintain an entirely separate copy of
+the MassOS source repository. Although the GNOME port is now discontinued at
+the time of writing, the Stage 3 system will remain in place going forward.
 
 The original build system had two stages - Stage 1 which used the host system
 to bootstrap a temporary toolchain for building MassOS, and Stage 2 which used
@@ -34,6 +36,11 @@ named "stage3-<desktop>.sh", e.g. "stage3-xfce.sh". Like build-system.sh, this
 is not intended to be run directly, however is run in chroot automatically in
 the same way that stage2.sh runs build-system.sh in chroot.
 
+Note that it is possible for the Stage 3 port to be submoduled; you will need
+to ensure it is checked out if so. This applies to GNOME, however the GNOME
+port is now discontinued, and is therefore unlikely to build successfully
+anyway (and we don't have any immediate plans to resume development/support).
+
 The subdirectory should also contain the following files/folders:
 
 - "stage3-<desktop>.sh" - Explained above... The Xfce one can be considered a
@@ -54,8 +61,11 @@ The subdirectory should also contain the following files/folders:
   configuration files that are automatically copied to the home directory when
   a new user is created. MassOS Xfce copiously needs to use this, but avoid it
   where possible, if you can set needed default settings system-wide instead.
-- "extra-package-licenses/" - For packages which don't include a license
-  document in their source tree, retrieve it from elsewhere and put it here.
-  You'll still need to manually install the license file in the build script.
-- Probably something else that has been forgotten here... Just check the Xfce
-  Stage 3 layout to be sure.
+- "extra-package-licenses/" - Do NOT use this for any purpose. Previously, it
+  was used to store the license files of packages which didn't include them in
+  their source trees. Support for this method is now deprecated, and will be
+  dropped entirely in the future. If a package does not include a license, then
+  you may be able to derive and extract the license text from one or more of
+  the source files. Alternatively, the license may be in a documentation
+  subdirectory instead of the top-level. If all else fails, patch it in. But do
+  NOT use "extra-package-licenses/" if at all possible.
